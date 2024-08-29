@@ -14,19 +14,24 @@ typedef struct {
   node *top;
 } stack;
 
-void free_node(node *node) {
-  if (node == NULL) {
-    return;
-  }
-  free_node(node->link);
-  free(node);
-}
-
 // Creates a new empty stack on the heap
 stack *create_stack() {
   stack *stk = (stack *)malloc(sizeof(stack));
+  if (stk == NULL) {
+    printf("Unable to allocate memory");
+    exit(EXIT_FAILURE);
+  }
   stk->stack_size = 0;
+  stk->top = NULL;
   return stk;
+}
+
+void free_node(node *curr) {
+  if (curr == NULL) {
+    return;
+  }
+  free_node(curr->link);
+  free(curr);
 }
 
 // Destroys the stack, and frees up its memory
@@ -45,9 +50,12 @@ void push(stack *stk, int val) {
     printf("NULL stack pointer");
     return;
   }
-  node *old_nodes = stk->top;
   node *new_node = (node *)malloc(sizeof(node));
-  new_node->link = old_nodes;
+  if (new_node == NULL) {
+    printf("Unable to allocate memory");
+    exit(EXIT_FAILURE);
+  }
+  new_node->link = stk->top;
   new_node->value = val;
   stk->top = new_node;
   stk->stack_size++;
@@ -59,13 +67,24 @@ int pop(stack *stk) {
     printf("NULL stack pointer");
     return INT_MIN;
   }
+  if (stk->top == NULL) {
+    return INT_MIN;
+  }
+  node *temp = stk->top;
+  int val = temp->value;
+  stk->top = stk->top->link;
+  free(temp);
   stk->stack_size--;
+  return val;
 }
 
 // Returns the topmost item of the stack, without changing the stack
 int peek_top(stack *stk) {
   if (stk == NULL) {
     printf("NULL stack pointer");
+    return INT_MIN;
+  }
+  if (stk->top == NULL) {
     return INT_MIN;
   }
   return stk->top->value;
@@ -77,13 +96,7 @@ size_t stack_size(stack *stk) {
     printf("NULL stack pointer");
     return INT_MIN;
   }
-  int count = 0;
-  node *temp;
-  while (temp != NULL) {
-    count++;
-    temp = temp->link;
-  }
-  return count;
+  return stk->stack_size;
 }
 
 // Removes all of the items from the stack
@@ -93,6 +106,8 @@ void clear_stack(stack *stk) {
     return;
   }
   free_node(stk->top);
+  stk->top = NULL;
+  stk->stack_size = 0;
   // TODO: check this out
 }
 
