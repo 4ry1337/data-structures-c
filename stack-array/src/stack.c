@@ -70,6 +70,7 @@ int pop(stack *stk) {
     return INT_MIN;
   }
   if (stk->stack_size < 1) {
+    printf("Pop attempt on an empty stack");
     return INT_MIN;
   }
   return stk->values[--stk->stack_size];
@@ -82,6 +83,7 @@ int peek_top(stack *stk) {
     return INT_MIN;
   }
   if (stk->stack_size < 1) {
+    printf("Peek attempt on an empty stack");
     return INT_MIN;
   }
   return stk->values[stk->stack_size - 1];

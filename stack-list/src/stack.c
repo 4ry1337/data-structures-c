@@ -68,6 +68,7 @@ int pop(stack *stk) {
     return INT_MIN;
   }
   if (stk->top == NULL) {
+    printf("Pop attempt on an empty stack");
     return INT_MIN;
   }
   node *temp = stk->top;
@@ -85,6 +86,7 @@ int peek_top(stack *stk) {
     return INT_MIN;
   }
   if (stk->top == NULL) {
+    printf("Peek attempt on an empty stack");
     return INT_MIN;
   }
   return stk->top->value;
