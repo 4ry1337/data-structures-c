@@ -1,4 +1,4 @@
-TARGET_EXEC := clock
+TARGET_EXEC := stack-array
 
 BUILD_DIR := ./build
 SRC_DIRS := ./src
