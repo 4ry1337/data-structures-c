@@ -13,7 +13,7 @@ void test_create_destroy_bstmap() {
 
   destroy_map(mp);
 
-  printf("test_create_destroy_bstmap: Passed\n");
+  printf("test_create_destroy_bstmap:\tPassed\n");
 }
 
 void test_map_size() {
@@ -33,7 +33,7 @@ void test_map_size() {
   assert(map_size(mp) == 3);
 
   destroy_map(mp);
-  printf("test_map_size: Passed\n");
+  printf("test_map_size:\tPassed\n");
 }
 
 void test_print_bstmap() {
@@ -43,8 +43,9 @@ void test_print_bstmap() {
   define(mp, "Yskak", 12);
   define(mp, "Mirat", 23);
 
-  printf("test_print_bstmap:\nExpected:\n[ "
-         "\nRakhat\t21\nYskak\t12\nMirat\t23\n]\nActual:\n");
+  printf("test_print_bstmap:\nExpected:\n{ <Mirat, 23>; <Rakhat, 21>; <Yskak, "
+         "12>; }\nActual:\n");
+
   print_map(mp);
 
   destroy_map(mp);
@@ -62,7 +63,7 @@ void test_define_get_value() {
   assert(get_value(mp, "Mirat") == 23);
 
   destroy_map(mp);
-  printf("test_define_get_value: Passed\n");
+  printf("test_define_get_value:\tPassed\n");
 }
 
 void test_clear_map() {
@@ -79,7 +80,7 @@ void test_clear_map() {
 
   destroy_map(mp);
 
-  printf("test_clear_map: Passed\n");
+  printf("test_clear_map:\tPassed\n");
 }
 
 void test_contain_key() {
@@ -87,7 +88,7 @@ void test_contain_key() {
   define(mp, "rakhat", 21);
   assert(contains_key(mp, "rakhat") && !contains_key(mp, "yskak"));
   destroy_map(mp);
-  printf("Test contains key: Passed\n");
+  printf("test_contain_key:\tPassed\n");
 }
 
 int main(int argc, char *argv[]) {

@@ -70,7 +70,7 @@ void print_tree(tree_node *tn) {
   if (tn == NULL)
     return;
   print_tree(tn->left);
-  printf("%s\t%d\n", tn->key, tn->value);
+  printf("<%s, %d>; ", tn->key, tn->value);
   print_tree(tn->right);
 }
 
@@ -177,7 +177,7 @@ void print_map(map *mp) {
     printf("NULL map pointer\n");
     return;
   }
-  printf("[\n");
+  printf("{ ");
   print_tree(mp->root);
-  printf("]\n");
+  printf("}\n");
 }
