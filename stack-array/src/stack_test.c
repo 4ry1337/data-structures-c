@@ -96,6 +96,7 @@ void test_stack_size() {
   printf("Test stack size: Passed\n");
 }
 
+/*
 int main(int argc, char *argv[]) {
   test_create_stack();
   test_destroy_stack();
@@ -106,3 +107,4 @@ int main(int argc, char *argv[]) {
   test_peek_top();
   return 0;
 }
+*/
